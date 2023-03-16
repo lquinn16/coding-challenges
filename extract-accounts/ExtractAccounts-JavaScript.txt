@@ -1,0 +1,85 @@
+class TransactionDetail {
+  transactionNumber: any;
+  accountNumber: any;
+  amount: any;
+
+  constructor(transactionNumber, accountNumber, amount) {
+    this.transactionNumber = transactionNumber;
+    this.accountNumber = accountNumber;
+    this.amount = amount;
+  }
+}
+
+class Account {
+  accountNumber: any;
+  transactions: any;
+
+  constructor(accountNumber, transactions) {
+    this.accountNumber = accountNumber;
+    this.transactions = transactions;
+  }
+}
+
+class Transaction {
+  transactionNumber: any;
+  amount: any;
+
+  constructor(transactionNumber, amount) {
+    this.transactionNumber = transactionNumber;
+    this.amount = amount;
+  }
+}
+
+// Example Input
+let transactionDetails = [
+  {
+    accountNumber: "0001123456",
+    transactionNumber: 1,
+    amount: 1000,
+  },
+  {
+    accountNumber: "0002234567",
+    transactionNumber: 2,
+    amount: 2000,
+  },
+  {
+    accountNumber: "0001123456",
+    transactionNumber: 3,
+    amount: 1500,
+  },
+];
+
+function extractAccounts(transactionDetails) {
+  // Code here
+}
+
+let result = extractAccounts(transactionDetails);
+
+console.log(result);
+
+// Example Output: Account[accountNumber, Transactions[transactionNumber, amount]]
+
+// [
+//   {
+//     accountNumber: "0001123456",
+//     transactions: [
+//       {
+//         transactionNumber: 1,
+//         amount: 1000,
+//       },
+//       {
+//         transactionNumber: 3,
+//         amount: 1500,
+//       },
+//     ],
+//   },
+//   {
+//     accountNumber: "0002234567",
+//     transactions: [
+//       {
+//         transactionNumber: 2,
+//         amount: 2000,
+//       },
+//     ],
+//   },
+// ];
