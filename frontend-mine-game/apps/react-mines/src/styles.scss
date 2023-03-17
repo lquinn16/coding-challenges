@@ -1,0 +1,15 @@
+// Colour palette (provided)
+$primary: #1a2c38;
+$secondary: #0f212f;
+$tertiary: #304654;
+$success: #00e701;
+$grayscale-grey: #b1bad3;
+$grayscale-white: #ffffff;
+
+.App {
+    font-family: sans-serif;
+    text-align: center;
+    background-color: $primary;
+    color: $grayscale-white;
+}
+
