@@ -5,11 +5,64 @@ $tertiary: #304654;
 $success: #00e701;
 $grayscale-grey: #b1bad3;
 $grayscale-white: #ffffff;
+$tile-background: #304453;
+$tile-highlight: #567086;
+$tile-shadow: #223643;
+$tile-selected: #061824;
+
+body {
+    background-color: $primary;
+}
 
 .App {
     font-family: sans-serif;
     text-align: center;
-    background-color: $primary;
     color: $grayscale-white;
 }
+
+.GameGrid {
+    
+
+}
+
+.grid {
+    background-color: $secondary;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 0.25vh;
+    width: 100%;
+    max-width: 60vh;
+    padding: 0.5vh;
+    border-top-left-radius: 2%;
+    border-top-right-radius: 2%;
+    margin: 0 auto;
+}
+
+@media (max-width: 800px) {
+    /* CSS that should be displayed if width is equal to or less than 800px goes here */
+
+}
+
+.tile {
+    cursor: pointer;
+    height: 11vh;
+    width: 11vh;
+    background-color: $tile-background;
+    transition: background-color 0.3s ease;
+    border-radius: 10%;
+    border-bottom: $tile-shadow 0.5vh solid;
+    margin: 0.4vh;
+    transition: margin 0.3s ease;
+}
+
+.tile:hover {
+    background-color: $tile-highlight;
+    margin-top: 0rem;
+}
+
+.tile.active {
+    background-color: $tile-selected;
+    border: none;
+}
+
 
