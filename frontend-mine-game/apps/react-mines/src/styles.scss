@@ -5,10 +5,14 @@ $tertiary: #304654;
 $success: #00e701;
 $grayscale-grey: #b1bad3;
 $grayscale-white: #ffffff;
+
+// Colour palette (not provided)
 $tile-background: #304453;
 $tile-highlight: #567086;
 $tile-selected: #061824;
 $panel-background: #223643;
+$modal-background: #051724;
+$modal-border: #02090e;
 
 body {
     background-color: $primary;
@@ -37,7 +41,6 @@ body {
 
 .GameOptions span {
     display: block;
-
 }
 
 .grid {
@@ -101,4 +104,42 @@ body {
     width: 9vh;
     padding: 1.5vh 0 0 0;
     visibility: visible;
+}
+
+.Modal {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    visibility: hidden;
+    background-color: $modal-background;
+    padding: 1.5vh 5vh;
+    border-radius: 2%;
+    border: $modal-border 0.1vh solid;
+    border-bottom: $modal-border 0.5vh solid;
+}
+
+.Modal.enabled {
+    visibility: visible;
+}
+
+button {
+    cursor: pointer;
+    color: $grayscale-white;
+    background-color: $primary;
+    padding: 1.5vh;
+    border-radius: 10%;
+    border: $secondary 0.25vh solid;
+    margin-bottom: 2vh;
+    max-height: 10vh;
+}
+
+button:hover {
+    background-color: $secondary;
+}
+
+input {
+    padding: 1.5vh;
+    border: $secondary 0.25vh solid;
+    margin-bottom: 2vh;
 }

@@ -16,6 +16,18 @@ export default function GameOptions() {
         setBetMade(true);
     };
 
+    const BetButton = () => {
+        return <button id={'betBtn'} disabled={betMade} onClick={handleClick}>Bet</button>;
+    };
+    
+    const CashoutButton = ({ onClick, disabled }: any) => {
+        return (
+            <button id={'cashoutBtn'} onClick={onClick} disabled={disabled}>
+                Cashout
+            </button>
+        );
+    };
+
     return (
         <div className="GameOptions">
             <span>Bet Amount ${amount}</span>
@@ -27,7 +39,8 @@ export default function GameOptions() {
                 value={amount}
                 disabled={betMade}
             />
-            <button className={'betButton'} onClick={handleClick} disabled={betMade}>Bet</button>
+            <BetButton />
+            <CashoutButton/>
         </div>
     );
 }
