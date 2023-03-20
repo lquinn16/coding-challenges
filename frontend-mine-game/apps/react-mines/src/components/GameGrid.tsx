@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import { minesBet } from "api"
 
 export default function GameGrid() {
     const [tiles, setTiles] = useState<boolean[]>(Array(25).fill(false));
@@ -9,8 +8,8 @@ export default function GameGrid() {
     const gemAudio = new Audio("/gem.mp3");
     const mineAudio = new Audio("/mine.mp3");
 
-    const numMines = 5;
-    const mineIndexes = Array.from({length: numMines}, () => Math.floor(Math.random() * 24));
+
+    const mineIndexes = Array.from({length: 5}, () => Math.floor(Math.random() * 24));
 
     const isMine = (index: number) => index in mineIndexes;
 
@@ -19,7 +18,11 @@ export default function GameGrid() {
     }
 
     const isGameOver = (index: number) => {
-        isMine(index) ? setGameOver(true) : setGameOver(false);
+        if (isMine(index)) {
+            setGameOver(true);
+        } else {
+            setGameOver(false);
+        }
         console.log('gameOver:', gameOver);
     }
 
@@ -42,7 +45,7 @@ export default function GameGrid() {
                 {tiles.map((tile, index) => (
                     <div
                         key={index}
-                        className={`tile ${tile ? 'active' : ''} ${gameOver ? 'disabled' : ''}`}
+                        className={`tile ${tile ? 'revealed' : ''} ${gameOver ? 'disabled' : ''}`}
                         onClick={() => handleClick(index)} 
                     >
                         <img key={index} src={index in mineIndexes ? require('../assets/mine.png') : require('../assets/gem.png')}/>
