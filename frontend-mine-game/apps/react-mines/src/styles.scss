@@ -7,8 +7,8 @@ $grayscale-grey: #b1bad3;
 $grayscale-white: #ffffff;
 $tile-background: #304453;
 $tile-highlight: #567086;
-$tile-shadow: #223643;
 $tile-selected: #061824;
+$panel-background: #223643;
 
 body {
     background-color: $primary;
@@ -20,12 +20,28 @@ body {
     color: $grayscale-white;
 }
 
-.GameGrid {
-    
+@media (max-width: 800px) {
+    /* CSS that should be displayed if width is equal to or less than 800px goes here */
+
+}
+
+.GameOptions {
+    background-color: $panel-background;
+    width: 100%;
+    max-width: 61vh;
+    height: 60vh;
+    border-bottom-left-radius: 2%;
+    border-bottom-right-radius: 2%;
+    margin: 0 auto;
+}
+
+.GameOptions span {
+    display: block;
 
 }
 
 .grid {
+    margin: 0 auto;
     background-color: $secondary;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -35,12 +51,11 @@ body {
     padding: 0.5vh;
     border-top-left-radius: 2%;
     border-top-right-radius: 2%;
-    margin: 0 auto;
 }
 
-@media (max-width: 800px) {
-    /* CSS that should be displayed if width is equal to or less than 800px goes here */
-
+.grid.disabled {
+    pointer-events: none;
+    opacity: 0.7;
 }
 
 .tile {
@@ -50,7 +65,7 @@ body {
     background-color: $tile-background;
     transition: background-color 0.3s ease;
     border-radius: 10%;
-    border-bottom: $tile-shadow 0.5vh solid;
+    border-bottom: $panel-background 0.5vh solid;
     margin: 0.4vh;
     transition: margin 0.3s ease;
 }
@@ -65,4 +80,18 @@ body {
     border: none;
 }
 
+.tile.disabled {
+    pointer-events: none;
+    opacity: 0.7;
+}
 
+.tile img {
+    height: 7vh;
+    width: 9vh;
+    padding: 1.5vh 0 0 0;
+    visibility: hidden;
+}
+
+.tile.active img {
+    visibility: visible;
+}
