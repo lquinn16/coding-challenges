@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 export default function GameOptions({handleBet, handleCashout, minesCallback, ...props}: any) {
     const [betAmount, setBetAmount] = useState<number>(0.00000000);
     const [numMines, setNumMines] = useState<number>(5);
-    const numMinesOptions = Array.from({length: 10}, (_, i) => i + 1);
+    const numMinesOptions = Array.from({length: 10}, (_, i) => (i+5) + 1);
 
     const BetInput = () => {
         const handleBetChange = (event: any) => {

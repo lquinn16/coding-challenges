@@ -26,26 +26,49 @@ body {
     color: $grayscale-white;
 }
 
-@media (max-width: 800px) {
-    /* CSS that should be displayed if width is equal to or less than 800px goes here */
+@media (min-width: 1000px) {
+    .gameContents {
+    }
 
+    .GameGrid {
+        display: inline-block;
+        margin: 0 auto;
+        vertical-align: top;
+        border-top-left-radius: 2%;
+        border-bottom-left-radius: 2%;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .GameOptions {
+        display: inline-block;
+        margin: 0 auto;
+        vertical-align: top;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 2%;
+        border-bottom-right-radius: 2%;
+    }
 }
 
 .Game {
     margin: 12vh 0 0 0;
 }
 
-.grid {
+.GameGrid {
     margin: 0 auto;
     background-color: $secondary;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 0.25vh;
     width: 100%;
     max-width: 60vh;
     padding: 0.5vh;
     border-top-left-radius: 2%;
     border-top-right-radius: 2%;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 0.25vh;
 }
 
 .tile {
@@ -118,8 +141,7 @@ body {
 
 .GameOptions {
     background-color: $panel-background;
-    width: 100%;
-    max-width: 61vh;
+    width: 61vh;
     height: 60vh;
     border-bottom-left-radius: 2%;
     border-bottom-right-radius: 2%;

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import MediaQuery from 'react-responsive'
 import { minesBet, minesCashout, minesNext, CasinoGameMines } from "api";
 import Modal from './Modal';
 import GameOptions from './GameOptions';
@@ -96,19 +97,21 @@ export default function Game() {
     return (
         <div className={'Game'}>
             <h3>Bet multiplier: x{betMultiplier}</h3>
-            <GameGrid 
-                tiles={tiles}
-                mineIndexes={mineIndexes}
-                handleTileClick={handleTileClick}
-                gameLost={gameLost}
-                gameState={gameState}
-            />
-            <GameOptions 
-                handleBet={handleBet} 
-                handleCashout={handleCashout}
-                minesCallback={minesCallback}
-                gameStarted={gameStarted}
-            />
+            <div className={'gameContents'}>
+                <GameGrid 
+                    tiles={tiles}
+                    mineIndexes={mineIndexes}
+                    handleTileClick={handleTileClick}
+                    gameLost={gameLost}
+                    gameState={gameState}
+                />
+                <GameOptions 
+                    handleBet={handleBet} 
+                    handleCashout={handleCashout}
+                    minesCallback={minesCallback}
+                    gameStarted={gameStarted}
+                />
+            </div>
             <Modal 
                 cashedOut={cashedOut} 
                 gameLost={gameLost} 
