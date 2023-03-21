@@ -22,7 +22,6 @@ export default function Game() {
     const [updatedBetAmount, setUpdatedBetAmount] = useState<number>(0);
     const betMultiplier = 1 + gameState.revealedTiles.length / 100;
     const winnings = updatedBetAmount * betMultiplier;
-    console.log('updatedBetAmount', updatedBetAmount);
 
     const resetGame = () => {
         setGameState(initialGameState);
@@ -45,14 +44,14 @@ export default function Game() {
     }
 
     const isGameLost = (index: number) => {
-        index in mineIndexes ? setGameLost(true) : setGameLost(false);
+        mineIndexes.includes(index) ? setGameLost(true) : setGameLost(false);
     }
 
     const gemAudio = new Audio("/gem.mp3");
     const mineAudio = new Audio("/mine.mp3");
 
     const playAudio = (index: number) => {
-        index in mineIndexes ? mineAudio.play() : gemAudio.play();
+        mineIndexes.includes(index) ? mineAudio.play() : gemAudio.play();
     }
 
     const handleTileClick = async (index: number) => {
@@ -89,36 +88,25 @@ export default function Game() {
         setCashedOut(true);
     }
 
+    const minesCallback = async (mines: number) => {
+        gameState.minesCount = mines;
+        setMineIndexes(Array.from({length: gameState.minesCount}, () => Math.floor(Math.random() * 24)));
+    }
+
     return (
         <div className={'Game'}>
             <h3>Bet multiplier: x{betMultiplier}</h3>
-            <div className="GameGrid">
-                <div className={`grid ${gameLost ? 'disabled' : ''}`}>
-                    {tiles.map((tile, index) => (
-                        <div
-                            key={index}
-                            className={`tile ${tile ? 'revealed' : ''} ${gameLost || gameState.state === 'cashout' ? 'disabled' : ''}`}
-                            onClick={() => handleTileClick(index)} 
-                        >
-                            <img 
-                                key={index} 
-                                src={index in mineIndexes ? require('../assets/mine.png') : require('../assets/gem.png')}
-                                alt={index in mineIndexes? 'mine' : 'gem'}
-                            />
-                        </div>
-                    ))}
-                </div>
-            </div>
-            {/* <GameGrid 
+            <GameGrid 
                 tiles={tiles}
                 mineIndexes={mineIndexes}
                 handleTileClick={handleTileClick}
                 gameLost={gameLost}
                 gameState={gameState}
-            /> */}
+            />
             <GameOptions 
                 handleBet={handleBet} 
                 handleCashout={handleCashout}
+                minesCallback={minesCallback}
                 gameStarted={gameStarted}
             />
             <Modal 

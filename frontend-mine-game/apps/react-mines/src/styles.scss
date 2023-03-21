@@ -31,23 +31,6 @@ body {
 
 }
 
-.GameOptions {
-    background-color: $panel-background;
-    width: 100%;
-    max-width: 61vh;
-    height: 60vh;
-    border-bottom-left-radius: 2%;
-    border-bottom-right-radius: 2%;
-    margin: 0 auto;
-}
-
-.GameOptions h3 {
-    display: block;
-    top: 0;
-    margin: 0;
-    padding: 0;
-}
-
 .Game {
     margin: 12vh 0 0 0;
 }
@@ -93,6 +76,7 @@ body {
 }
 
 .tile.revealed {
+    pointer-events: none;
     background-color: $tile-selected;
     border: none;
 }
@@ -132,14 +116,32 @@ body {
     visibility: visible;
 }
 
+.GameOptions {
+    background-color: $panel-background;
+    width: 100%;
+    max-width: 61vh;
+    height: 60vh;
+    border-bottom-left-radius: 2%;
+    border-bottom-right-radius: 2%;
+    margin: 0 auto;
+    padding-top: 3vh;
+}
+
+.GameOptions h4 {
+    display: block;
+    top: 0;
+    margin: 0;
+    padding: 0 0 1vh 0;
+}
+
 button {
     cursor: pointer;
     color: $modal-border;
     background-color: $success;
     padding: 1.5vh;
-    border-radius: 10%;
+    // border-radius: 10%;
     border: $secondary 0.25vh solid;
-    margin-bottom: 2vh;
+    margin-bottom: 3vh;
     max-height: 10vh;
 }
 
@@ -151,10 +153,33 @@ button:disabled {
     background-color: #027d03;
 }
 
+#betBtn {
+    width: 35%;
+    margin: 0 1vh 2vh 0;
+}
+
+#cashoutBtn {
+    width: 35%;
+    margin: 0 0 2vh 1vh;
+}
+
 input {
+    color: $grayscale-white;
+    background-color: $secondary;
+    border: $tile-background 0.25vh solid;
     padding: 1.5vh;
-    border: $secondary 0.25vh solid;
+    margin-bottom: 1vh;
+    width: 70%;
+}
+
+select {
+    color: $grayscale-white;
+    background-color: $secondary;
+    border: $tile-background 0.25vh solid;
+    padding: 1.5vh;
     margin-bottom: 2vh;
+    width: 70%;
+    overflow: visible;
 }
 
 .Header {
@@ -165,7 +190,6 @@ input {
     border: 0;
     position: fixed;
     top: 0;
-    // z-index: 99;
 }
 .Header::after {
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);

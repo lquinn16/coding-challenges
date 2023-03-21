@@ -15,8 +15,8 @@ export default function GameGrid({handleTileClick, ...props}: any) {
                         >
                             <img 
                                 key={index} 
-                                src={index in props.mineIndexes ? require('../assets/mine.png') : require('../assets/gem.png')}
-                                alt={index in props.mineIndexes? 'mine' : 'gem'}
+                                src={props.mineIndexes.includes(index) ? require('../assets/mine.png') : require('../assets/gem.png')}
+                                alt={props.mineIndexes.includes(index) ? 'mine' : 'gem'}
                             />
                         </div>
                     ))}
