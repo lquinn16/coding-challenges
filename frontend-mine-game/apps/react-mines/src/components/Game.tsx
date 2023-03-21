@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { minesBet, minesCashout, minesNext, CasinoGameMines } from "api";
 import Modal from './Modal';
+import GameOptions from './GameOptions';
+import GameGrid from './GameGrid';
 
 export default function Game() {
     const initialGameState: CasinoGameMines = {
@@ -14,20 +16,21 @@ export default function Game() {
     const [gameStarted, setGameStarted] = useState(false);
     const [gameWon, setGameWon] = useState(false);
     const [gameLost, setGameLost] = useState(false);
+    const [cashedOut, setCashedOut] = useState(false);
     const [tiles, setTiles] = useState<boolean[]>(Array(25).fill(false));
     const [mineIndexes, setMineIndexes] = useState<number[]>(Array.from({length: gameState.minesCount}, () => Math.floor(Math.random() * 24)));
-    const [score, setScore] = useState<number>(0);
-    const [betAmount, setBetAmount] = useState<number>(0.00000000);
-    const [updatedBetAmount, setUpdatedBetAmount] = useState<number>(betAmount);
+    const [updatedBetAmount, setUpdatedBetAmount] = useState<number>(0);
+    const betMultiplier = 1 + gameState.revealedTiles.length / 100;
+    const winnings = updatedBetAmount * betMultiplier;
+    console.log('updatedBetAmount', updatedBetAmount);
 
     const resetGame = () => {
         setGameState(initialGameState);
         setGameStarted(false);
-        setGameLost(false);
         setGameWon(false);
+        setGameLost(false);
+        setCashedOut(false);
         setTiles(Array(25).fill(false));
-        setScore(0);
-        setBetAmount(0.00000000);
         setUpdatedBetAmount(0);
         setMineIndexes(Array.from({length: gameState.minesCount}, () => Math.floor(Math.random() * 24)));
     }
@@ -69,42 +72,26 @@ export default function Game() {
         setGameState(newState);
 
         isGameLost(index);
-        !gameLost ? setScore(score + 1) : setScore(0);
         isGameWon();
         gameWon ? minesCashout() : console.log("continue");
     }
 
-    const handleBetChange = (event: any) => {
-        setBetAmount(event.target.value);
-    };
-
-    const handleBet = async () => {
+    const handleBet = async (betAmount: number) => {
         let newState = await minesBet();
         setGameState(newState);
         hasGameStarted(true);
         setUpdatedBetAmount(betAmount);
     }
 
-    const BetButton = () => {
-        return <button id={'betBtn'} disabled={gameStarted} onClick={handleBet}>Bet</button>;
-    };
-    
     const handleCashout = async () => {
         let newState = await minesCashout();
         setGameState(newState);
-    }
-
-    const CashoutButton = () => {
-        return (
-            <button id={'cashoutBtn'} disabled={gameState.state !== 'progress'} onClick={handleCashout}>
-                Cashout
-            </button>
-        );
+        setCashedOut(true);
     }
 
     return (
         <div className={'Game'}>
-            <h2>Score: {score}</h2>
+            <h3>Bet multiplier: x{betMultiplier}</h3>
             <div className="GameGrid">
                 <div className={`grid ${gameLost ? 'disabled' : ''}`}>
                     {tiles.map((tile, index) => (
@@ -121,26 +108,26 @@ export default function Game() {
                         </div>
                     ))}
                 </div>
+            </div>
+            {/* <GameGrid 
+                tiles={tiles}
+                mineIndexes={mineIndexes}
+                handleTileClick={handleTileClick}
+                gameLost={gameLost}
+                gameState={gameState}
+            /> */}
+            <GameOptions 
+                handleBet={handleBet} 
+                handleCashout={handleCashout}
+                gameStarted={gameStarted}
+            />
             <Modal 
-                cashedOut={gameState.state === 'cashout'} 
+                cashedOut={cashedOut} 
                 gameLost={gameLost} 
                 gameWon={gameWon} 
                 resetGame={resetGame}
+                winnings={winnings}
             />
-            </div>
-            <div className="GameOptions">
-                <span>Bet Amount ${betAmount}</span>
-                <input
-                    type="text"
-                    id="betAmount"
-                    name="betAmount"
-                    onChange={handleBetChange}
-                    value={betAmount}
-                    disabled={gameStarted}
-                />
-                <BetButton />
-                <CashoutButton/>
-            </div>
         </div>
     );
 }

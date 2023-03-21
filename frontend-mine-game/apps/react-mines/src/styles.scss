@@ -41,8 +41,11 @@ body {
     margin: 0 auto;
 }
 
-.GameOptions span {
+.GameOptions h3 {
     display: block;
+    top: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .Game {
@@ -114,7 +117,7 @@ body {
 
 .Modal {
     position: absolute;
-    top: 40%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     visibility: hidden;
@@ -131,8 +134,8 @@ body {
 
 button {
     cursor: pointer;
-    color: $grayscale-white;
-    background-color: $primary;
+    color: $modal-border;
+    background-color: $success;
     padding: 1.5vh;
     border-radius: 10%;
     border: $secondary 0.25vh solid;
@@ -141,11 +144,11 @@ button {
 }
 
 button:hover {
-    background-color: $secondary;
+    background-color: #04ba05;
 }
 
 button:disabled {
-    background-color: $secondary;
+    background-color: #027d03;
 }
 
 input {

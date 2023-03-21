@@ -1,47 +1,37 @@
 import React, { useState } from 'react';
-import { minesBet, minesCashout, minesNext, CasinoGameMines } from "api";
 
-export default function GameOptions({handleBet, ...props}: any) {
-    const [amount, setAmount] = useState(0.00000000);
-    const [updatedAmount, setUpdatedAmount] = useState(amount);
-    const [betMade, setBetMade] = useState(false);
-    // const [mines, setMines] = useState(3);
-
+export default function GameOptions({handleBet, handleCashout, ...props}: any) {
+    const [betAmount, setBetAmount] = useState<number>(0.00000000);
 
     const handleBetChange = (event: any) => {
-        setAmount(event.target.value);
-    };
-
-    const handleBetClick = () => {
-        setUpdatedAmount(amount);
-        setBetMade(true);
+        setBetAmount(event.target.value);
     };
 
     const BetButton = () => {
-        return <button id={'betBtn'} disabled={betMade} onClick={handleBetClick}>Bet</button>;
+        return <button id={'betBtn'} disabled={props.gameStarted} onClick={() => handleBet(betAmount)}>Bet</button>;
     };
-    
-    const CashoutButton = ({ onClick, disabled }: any) => {
+
+    const CashoutButton = () => {
         return (
-            <button id={'cashoutBtn'} onClick={onClick} disabled={disabled}>
+            <button id={'cashoutBtn'} disabled={!props.gameStarted} onClick={handleCashout}>
                 Cashout
             </button>
         );
-    };
+    }
 
     return (
         <div className="GameOptions">
-            <span>Bet Amount ${amount}</span>
-            <input
-                type="text"
-                id="betAmount"
-                name="betAmount"
-                onChange={handleBetChange}
-                value={amount}
-                disabled={betMade}
-            />
-            <BetButton />
-            <CashoutButton/>
-        </div>
+                <h3>Bet Amount ${betAmount}</h3>
+                <input
+                    type="text"
+                    id="betAmount"
+                    name="betAmount"
+                    onChange={handleBetChange}
+                    value={betAmount}
+                    disabled={props.gameStarted}
+                />
+                <BetButton />
+                <CashoutButton/>
+            </div>
     );
 }
