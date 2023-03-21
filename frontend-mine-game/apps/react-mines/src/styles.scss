@@ -16,6 +16,8 @@ $modal-border: #02090e;
 
 body {
     background-color: $primary;
+    margin: 0;
+    padding: 0;
 }
 
 .App {
@@ -41,6 +43,10 @@ body {
 
 .GameOptions span {
     display: block;
+}
+
+.Game {
+    margin: 12vh 0 0 0;
 }
 
 .grid {
@@ -146,4 +152,34 @@ input {
     padding: 1.5vh;
     border: $secondary 0.25vh solid;
     margin-bottom: 2vh;
+}
+
+.Header {
+    background-color: $primary;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    position: fixed;
+    top: 0;
+    // z-index: 99;
+}
+.Header::after {
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+    content: '';
+    display: block;
+    height: 9vh;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+}
+
+.Header .logo {
+    height: 5vh;
+    max-height: 5vh;
+    filter: invert(100%);
+    margin: 1vh 0 1vh 0;
+    padding: 1vh 0;
 }
