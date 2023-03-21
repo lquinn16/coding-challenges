@@ -1,7 +1,3 @@
-import React, { useState } from 'react';
-import { minesBet, minesCashout, minesNext, CasinoGameMines } from "../../../../packages/api/src/index";
-import Modal from './Modal';
-
 export default function GameGrid({handleTileClick, ...props}: any) {
 
     return (
