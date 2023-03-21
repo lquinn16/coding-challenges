@@ -58,6 +58,10 @@ You can try to play mines on the staging environment to get an idea how the game
 ## Implementation
 We've created three different templates for you to work from. Pick whichever framework you feel the most comfortable with.
 
+## Symlink api package
+1. `npm link` in package
+2. `npm link api` in project directory
+
 ## Running the project (React)
 1. run `yarn install`
 2. run `yarn dev`

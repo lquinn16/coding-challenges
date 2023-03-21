@@ -1,10 +1,13 @@
 import * as React from "react";
-import "./styles.css";
+import "./styles.scss";
+import Header from "./components/Header";
+import Game from "./components/Game";
 
 export default function App() {
   return (
     <div className="App">
-      Easygo Mines
+      <Header/>
+      <Game/>
     </div>
   );
 }

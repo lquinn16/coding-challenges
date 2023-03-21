@@ -1,0 +1,234 @@
+// Colour palette (provided)
+$primary: #1a2c38;
+$secondary: #0f212f;
+$tertiary: #304654;
+$success: #00e701;
+$grayscale-grey: #b1bad3;
+$grayscale-white: #ffffff;
+
+// Colour palette (not provided)
+$tile-background: #304453;
+$tile-highlight: #567086;
+$tile-selected: #061824;
+$panel-background: #223643;
+$modal-background: #051724;
+$modal-border: #02090e;
+
+body {
+    background-color: $primary;
+    margin: 0;
+    padding: 0;
+}
+
+.App {
+    font-family: sans-serif;
+    text-align: center;
+    color: $grayscale-white;
+}
+
+@media (min-width: 1000px) {
+    .gameContents {
+    }
+
+    .GameGrid {
+        display: inline-block;
+        margin: 0 auto;
+        vertical-align: top;
+        border-top-left-radius: 2%;
+        border-bottom-left-radius: 2%;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .GameOptions {
+        display: inline-block;
+        margin: 0 auto;
+        vertical-align: top;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 2%;
+        border-bottom-right-radius: 2%;
+    }
+}
+
+.Game {
+    margin: 12vh 0 0 0;
+}
+
+.GameGrid {
+    margin: 0 auto;
+    background-color: $secondary;
+    width: 100%;
+    max-width: 60vh;
+    padding: 0.5vh;
+    border-top-left-radius: 2%;
+    border-top-right-radius: 2%;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 0.25vh;
+}
+
+.tile {
+    cursor: pointer;
+    height: 11vh;
+    width: 11vh;
+    background-color: $tile-background;
+    transition: background-color 0.3s ease;
+    border-radius: 10%;
+    border-bottom: $panel-background 0.5vh solid;
+    margin: 0.4vh;
+    transition: margin 0.3s ease;
+}
+
+.tile:hover {
+    background-color: $tile-highlight;
+    margin-top: 0rem;
+}
+
+.tile.disabled {
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+.tile.revealed.disabled {
+    pointer-events: none;
+    opacity: 0.9;
+}
+
+.tile.revealed {
+    pointer-events: none;
+    background-color: $tile-selected;
+    border: none;
+}
+
+.tile img {
+    height: 5vh;
+    width: 7vh;
+    padding: 3vh 0 0 0;
+    visibility: hidden;
+}
+
+.tile.disabled img {
+    visibility: visible;
+}
+
+.tile.revealed img {
+    height: 7vh;
+    width: 9vh;
+    padding: 1.5vh 0 0 0;
+    visibility: visible;
+}
+
+.Modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    visibility: hidden;
+    background-color: $modal-background;
+    padding: 1.5vh 5vh;
+    border-radius: 2%;
+    border: $modal-border 0.1vh solid;
+    border-bottom: $modal-border 0.5vh solid;
+}
+
+.Modal.enabled {
+    visibility: visible;
+}
+
+.GameOptions {
+    background-color: $panel-background;
+    width: 61vh;
+    height: 60vh;
+    border-bottom-left-radius: 2%;
+    border-bottom-right-radius: 2%;
+    margin: 0 auto;
+    padding-top: 3vh;
+}
+
+.GameOptions h4 {
+    display: block;
+    top: 0;
+    margin: 0;
+    padding: 0 0 1vh 0;
+}
+
+button {
+    cursor: pointer;
+    color: $modal-border;
+    background-color: $success;
+    padding: 1.5vh;
+    // border-radius: 10%;
+    border: $secondary 0.25vh solid;
+    margin-bottom: 3vh;
+    max-height: 10vh;
+}
+
+button:hover {
+    background-color: #04ba05;
+}
+
+button:disabled {
+    background-color: #027d03;
+}
+
+#betBtn {
+    width: 35%;
+    margin: 0 1vh 2vh 0;
+}
+
+#cashoutBtn {
+    width: 35%;
+    margin: 0 0 2vh 1vh;
+}
+
+input {
+    color: $grayscale-white;
+    background-color: $secondary;
+    border: $tile-background 0.25vh solid;
+    padding: 1.5vh;
+    margin-bottom: 1vh;
+    width: 70%;
+}
+
+select {
+    color: $grayscale-white;
+    background-color: $secondary;
+    border: $tile-background 0.25vh solid;
+    padding: 1.5vh;
+    margin-bottom: 2vh;
+    width: 70%;
+    overflow: visible;
+}
+
+.Header {
+    background-color: $primary;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    position: fixed;
+    top: 0;
+}
+.Header::after {
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+    content: '';
+    display: block;
+    height: 9vh;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+}
+
+.Header .logo {
+    height: 5vh;
+    max-height: 5vh;
+    filter: invert(100%);
+    margin: 1vh 0 1vh 0;
+    padding: 1vh 0;
+}
