@@ -138,6 +138,10 @@ button:hover {
     background-color: $secondary;
 }
 
+button:disabled {
+    background-color: $secondary;
+}
+
 input {
     padding: 1.5vh;
     border: $secondary 0.25vh solid;

@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
+import { minesBet, minesCashout, minesNext, CasinoGameMines } from "api";
 
-export default function GameOptions() {
+export default function GameOptions({handleBet, ...props}: any) {
     const [amount, setAmount] = useState(0.00000000);
     const [updatedAmount, setUpdatedAmount] = useState(amount);
     const [betMade, setBetMade] = useState(false);
     // const [mines, setMines] = useState(3);
 
 
-    const handleChange = (event: any) => {
+    const handleBetChange = (event: any) => {
         setAmount(event.target.value);
     };
 
-    const handleClick = () => {
+    const handleBetClick = () => {
         setUpdatedAmount(amount);
         setBetMade(true);
     };
 
     const BetButton = () => {
-        return <button id={'betBtn'} disabled={betMade} onClick={handleClick}>Bet</button>;
+        return <button id={'betBtn'} disabled={betMade} onClick={handleBetClick}>Bet</button>;
     };
     
     const CashoutButton = ({ onClick, disabled }: any) => {
@@ -35,7 +36,7 @@ export default function GameOptions() {
                 type="text"
                 id="betAmount"
                 name="betAmount"
-                onChange={handleChange}
+                onChange={handleBetChange}
                 value={amount}
                 disabled={betMade}
             />

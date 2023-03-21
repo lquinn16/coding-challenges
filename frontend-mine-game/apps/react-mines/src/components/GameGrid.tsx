@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { minesBet, minesCashout, minesNext } from "../../../../packages/api/src/index";
+import { minesBet, minesCashout, minesNext, CasinoGameMines } from "../../../../packages/api/src/index";
 import Modal from './Modal';
 
 export default function GameGrid() {
@@ -8,6 +8,8 @@ export default function GameGrid() {
     const [gameLost, setGameLost] = useState<boolean>(false);
     const [gameWon, setGameWon] = useState<boolean>(false);
     const [score, setScore] = useState<number>(0);
+
+    
 
     const gemAudio = new Audio("/gem.mp3");
     const mineAudio = new Audio("/mine.mp3");
